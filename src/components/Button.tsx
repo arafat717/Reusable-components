@@ -1,8 +1,16 @@
-import React from "react";
+import cn from "../utils/cn";
 
-const Button = ({ className, children }) => {
+const Button = ({ className, children, outline }) => {
   return (
-    <button className={`bg-green-500 px-3 py-2 rounded-lg ${className}`}>
+    <button
+      className={cn(
+        "bg-purple-500 px-3 py-2 rounded-lg",
+        {
+          "border border-purple-600 bg-opacity-10": outline,
+        },
+        className
+      )}
+    >
       {children}
     </button>
   );
