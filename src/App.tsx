@@ -6,11 +6,7 @@ function App() {
     <>
       <Container>
         <div className="h-screen w-full flex justify-center items-center">
-          <Button
-            children={"click here"}
-            className={"bg-red-600"}
-            outline={true}
-          ></Button>
+          <Button children={"click here"} className={"w-96"}></Button>
         </div>
       </Container>
     </>

@@ -1,18 +1,20 @@
 import cn from "../utils/cn";
 
-const Button = ({ className, children, outline }) => {
+const Button = ({ className, children, variant }) => {
+  const getvariant = (variant) => {
+    switch (variant) {
+      case "outline":
+        return "btn-outline";
+      case "gost":
+        return "btn-gost";
+
+      default:
+        return "btn-solid";
+    }
+  };
+
   return (
-    <button
-      className={cn(
-        "bg-purple-500 px-3 py-2 rounded-lg",
-        {
-          "border border-purple-600 bg-opacity-10": outline,
-        },
-        className
-      )}
-    >
-      {children}
-    </button>
+    <button className={cn(getvariant(variant), className)}>{children}</button>
   );
 };
 

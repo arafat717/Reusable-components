@@ -1,5 +1,20 @@
 @layer components {
-  .btn {
-    @apply bg-primary-gradiant rounded-lg px-3 py-2;
+  .btn-solid {
+    @apply px-3 py-2;
+    @apply font-semibold text-white rounded-lg;
+    @apply bg-purple-500 hover:bg-purple-600 focus:bg-purple-600;
+    @apply transition-all;
+  }
+  .btn-outline {
+    @apply px-3 py-2;
+    @apply font-semibold text-purple-500 rounded-lg;
+    @apply border border-purple-500 hover:bg-purple-500 focus:bg-purple-500;
+    @apply transition-all;
+  }
+  .btn-gost {
+    @apply px-3 py-2;
+    @apply font-semibold text-purple-500 rounded-lg;
+    @apply bg-purple-400 bg-opacity-0 hover:bg-opacity-20 focus:bg-opacity-20;
+    @apply transition-all;
   }
 }
