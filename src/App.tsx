@@ -1,11 +1,14 @@
-import NormalForm from "./components/react-hook-form/NormalForm";
+import { Form, FormSection, FormSubmit } from "./components/ReausableForm";
 import Container from "./components/ui/Container";
 
 function App() {
   return (
     <>
       <Container>
-        <NormalForm></NormalForm>
+        <Form>
+          <FormSection></FormSection>
+          <FormSubmit></FormSubmit>
+        </Form>
       </Container>
     </>
   );

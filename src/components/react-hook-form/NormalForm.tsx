@@ -1,12 +1,27 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import cn from "../../utils/cn";
 import Button from "../Button";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const singhupSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  email: z.string().email().min(1, { message: "email is required" }),
+  password: z.string().min(8, "password is too short"),
+});
+
+type TNormalForm = z.infer<typeof singhupSchema>;
 
 const NormalForm = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TNormalForm>({
+    resolver: zodResolver(singhupSchema),
+  });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: FieldValues) => {
     console.log(data);
   };
 
@@ -38,31 +53,42 @@ const NormalForm = () => {
             id="name"
             {...register("name")}
           />
+          {errors.name && (
+            <span className="text-xs text-red-500">{errors.name.message}</span>
+          )}
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="email">
             Email
           </label>
           <input
             className=" w-full"
-            type="text"
-            id="name"
-            {...register("name")}
+            type="email"
+            id="email"
+            {...register("email")}
           />
+          {errors.email && (
+            <span className="text-xs text-red-500">{errors.email.message}</span>
+          )}
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="password">
             Password
           </label>
           <input
             className="w-full "
-            type="text"
-            id="name"
-            {...register("name")}
+            type="password"
+            id="password"
+            {...register("password")}
           />
+          {errors.password && (
+            <span className="text-xs text-red-500">
+              {errors.password.message}
+            </span>
+          )}
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="option">
             option
           </label>
           <select>
@@ -77,12 +103,6 @@ const NormalForm = () => {
             TextArea
           </label>
           <textarea></textarea>
-        </div>
-        <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
-            checkbox
-          </label>
-          <input type="checkbox" name="" id="" />
         </div>
       </div>
       <div
